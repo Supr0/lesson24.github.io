@@ -7,6 +7,16 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <h1>Drawing Program</h1>
+    <canvas id="canvas"><canvas>
+    <script>
+        function draw(event){
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+            var rect = canvas.getBoundingClientRect();
+            var posx = event.clientX - rect.left
+            var posx = event.clientX - rect.left  
+        }
+    </script>
 </body>
 </html>
