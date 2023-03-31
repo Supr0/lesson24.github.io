@@ -25,9 +25,9 @@
                 var posy = event.clientY - rect.top;
                 ctx.fillStyle = randColor() + "33"; 
                 ctx.beginPath();
-                ctx.arc(posx, posy, 50, 0, Math.PI * 2);
+                ctx.fillRect(posx - 25, posy - 25, 50, 50);
                 ctx.fill();
             }
         </script>
     </body>
-</html>
+</html> 
