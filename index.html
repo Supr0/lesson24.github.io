@@ -1,33 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
     </head>
     <body style="background-color: darksalmon;">
-        <h1>Drawing Program</h1>
-        <canvas id="canvas" style="background-color: aliceblue;" width="600" height="400" onclick="draw(event)"><canvas>
-        <script>
-            function randColor(){
-                var r = Math.round(Math.random() * 240 + 16);
-                var g = Math.round(Math.random() * 240 + 16);
-                var b = Math.round(Math.random() * 240 + 16);
-                var color = "#" + r.toString(16) + g.toString(16) + b.toString(16);
-                return color;
-            }
-            function draw(event){
-                var canvas = document.getElementById("canvas");
-                var ctx = canvas.getContext("2d");
-                var rect = canvas.getBoundingClientRect();
-                var posx = event.clientX - rect.left;
-                var posy = event.clientY - rect.top;
-                ctx.fillStyle = randColor(); 
-                ctx.beginPath();
-                ctx.arc(posx, posy, 50, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        </script>
+      <h1>Drawing Program</h1>
+      <canvas id="canvas" style="background-color: aliceblue;" width="600" height="400" onclick="draw(event)"><canvas>
+      <script>
+        let isDrawing = false;
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+        function randColor(){
+          var r = Math.round(Math.random() * 240 + 16);
+          var g = Math.round(Math.random() * 240 + 16);
+          var b = Math.round(Math.random() * 240 + 16);
+          var color = "#" + r.toString(16) + g.toString(16) + b.toString(16);
+          return color;
+        }
+        function drawCircle(x, y) {
+          ctx.fillStyle = randColor() + "33";
+          ctx.beginPath();
+          ctx.arc(x, y, 50, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        canvas.addEventListener("mousedown", (event) => {
+          isDrawing = true;
+          drawCircle(event.clientX - canvas.offsetLeft, event.clientY - canvas.offsetTop);
+        });
+        canvas.addEventListener("mousemove", (event) => {
+          if (isDrawing) {
+            drawCircle(event.clientX - canvas.offsetLeft, event.clientY - canvas.offsetTop);
+          }
+        });
+        canvas.addEventListener("mouseup", (event) => {
+          isDrawing = false;
+        });
+      </script>
     </body>
 </html>
